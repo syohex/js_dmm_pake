@@ -10,7 +10,7 @@
     function createPackageLink() {
         var imageNode = document.getElementsByName("package-image").item(1);
 
-        if (imgNode === null) {
+        if (imageNode === null) {
             return;
         }
 
