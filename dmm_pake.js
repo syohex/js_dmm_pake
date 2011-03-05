@@ -5,8 +5,6 @@
 // ==/UserScript==
 
 (function() {
-    var base = "http://pics.dmm.co.jp/mono/movie/";    
-
     function createPackageLink() {
         var imageNode = document.getElementsByName("package-image").item(1);
 
@@ -19,16 +17,16 @@
             return location.match(/cid=([^/]+)/)[1];
         })();
 
-        var url  = base + product_id;
-        if (product_id.match(/^15/)) {
-            // for momotaro
-            url += ("so/" + product_id + "sopl.jpg");
-        } else {
-            url += ("/" + product_id + "pl.jpg");
-        }
+        var img_xpath = "id('sample-video')/a/img";
+        var img = document.evaluate(img_xpath, document, null,
+                                    XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
+                                    null);
+
+        var small_url_img = img.snapshotItem(0).getAttribute("src");
+        var large_img_url = small_url_img.replace('ps.jpg', 'pl.jpg');
 
         var newNode = document.createElement("a");
-        newNode.setAttribute("href", url);
+        newNode.setAttribute("href", large_img_url);
         newNode.setAttribute("target", "_blank");
 
         var textNode = document.createTextNode("パケ写拡大");
