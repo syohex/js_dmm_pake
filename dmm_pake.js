@@ -22,6 +22,13 @@
                                     XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
                                     null);
 
+        if (img.snapshotItem(0) === null) {
+            img_xpath = "id('sample-video')/div/a/img";
+            img = document.evaluate(img_xpath, document, null,
+                                    XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
+                                    null);
+        }
+
         var small_url_img = img.snapshotItem(0).getAttribute("src");
         var large_img_url = small_url_img.replace('ps.jpg', 'pl.jpg');
 
