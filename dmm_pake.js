@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name           DMM Package Image
+// @name           DMM pake
 // @namespace      http://d.hatena.ne.jp/syohex/
 // @include        http://www.dmm.co.jp/*
 // ==/UserScript==
@@ -24,6 +24,12 @@
 
         if (img.snapshotItem(0) === null) {
             img_xpath = "id('sample-video')/div/a/img";
+            img = document.evaluate(img_xpath, document, null,
+                                    XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
+                                    null);
+        }
+        if (img.snapshotItem(0) === null) {
+            img_xpath = "//a[@name='package-image']/img";
             img = document.evaluate(img_xpath, document, null,
                                     XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
                                     null);
